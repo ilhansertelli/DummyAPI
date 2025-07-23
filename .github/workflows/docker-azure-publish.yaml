@@ -20,9 +20,9 @@ jobs:
         
       - name: Build Docker Images
         run: |
-          docker build -t ${{ secrets.ACR_NAME }}/dummy-api:ilhan .
+          docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/dummy-api:ilhan .
 
       - name: Push the container to Azure
         run: |
-          docker push ${{ secrets.ACR_NAME }}/dummy-api:ilhan
+          docker push ${{ secrets.ACR_NAME }}.azurecr.io/dummy-api:ilhan
 
