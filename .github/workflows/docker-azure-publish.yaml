@@ -1,0 +1,28 @@
+name: Build and Push to Azure Container Registry
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-push-image:
+    runs on: ubuntu-latest
+
+    steps:
+      - name: Load Repo Codes
+        uses: actions/checkout@v3
+      
+      - name: Log in to Azure
+        uses: actions/docker-login@v3
+        with:
+          registry: ${{ secrets.ACR_NAME }}.azurecr.io
+          username: ${{ secrets.ACR_NAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+        
+      - name: Build Docker Images
+        run: |
+          docker build -t ${{ secrets.ACR_NAME }}/dummy-api:ilhan .
+
+      - name: Push the container to Azure
+        run: |
+          docker push ${{ secrets.ACR_NAME }}/dummy-api:ilhan
+
