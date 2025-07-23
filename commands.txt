@@ -1,0 +1,19 @@
+docker build \
+    -t ilhan-python-3-11:v0 .
+
+docker build \
+    -t ilhan-python-3-11:v0_ent .
+
+docker run -dit \
+    --name ilhan-python-dev \
+    ilhan-python-3-11:v0
+
+docker run -dit \
+    -p 7171:88 \
+    --name ilhan-python-dev2 \
+    ilhan-python-3-11:v0
+
+docker run -dit \
+    -p 7171:88 \
+    --name ilhan-python-dev3_ent \
+    ilhan-python-3-11:v0_ent
